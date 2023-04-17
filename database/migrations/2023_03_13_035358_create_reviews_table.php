@@ -15,8 +15,16 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('point');
+            $table->integer('enjoyment')->default(0);
+            $table->integer('cost')->default(0);
+            $table->integer('connection')->default(0);
+            $table->integer('strict')->default(0);
+            $table->integer('often')->default(0);
+            $table->integer('scale')->default(0);
+            
             $table->string('body', 1000);
+            
+            $table->timestamps();
             
             $table->foreignId('user_id')->constrained();
             $table->foreignId('club_id')->constrained();

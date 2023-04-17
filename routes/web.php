@@ -29,9 +29,13 @@ Route::get('/', function() {
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
     Route::get('/reviews/select', 'select');
     Route::get('/reviews/post', 'post');
-    Route::get('/reviews','store');
+    Route::post('/reviews', 'store')->name('reviews.store');
     Route::get('/reviews/setting', 'setting');
-    Route::get('/reviews/post_complete', 'post_complete');
+    /*確認用*/
+    Route::get('/reviews/both', 'both');
+    Route::get('/reviews/{review}', 'detail');
+    Route::post('/reviews/{review}/comment', 'submit');
+   ;
 
     
     

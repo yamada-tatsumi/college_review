@@ -80,14 +80,14 @@
                     </select>
                 </div>
                 <br>
-                <div class="search">
-                    <input type="submit" name="search" value"検索する">
+                <div class="serch">
+                    <a href='/reviews/both'>検索する</a>    
                 </div>
         </form>
         <br>
         <div class="return">
-            <a href="reviews/select">戻る</a>
+            <a href="/reviews/select">戻る</a>
         </div>
         </div>     
         </x-app-layout>
-    
+   
