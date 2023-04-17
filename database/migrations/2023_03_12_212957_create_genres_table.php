@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
-            $table->string('average_evaluation');
+            $table->float('average_evaluation', 3, 2)->default(0);
+            $table->timestamps();
         });
     }
 

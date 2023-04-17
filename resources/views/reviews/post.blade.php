@@ -7,12 +7,7 @@
             form{
                 text-align:center;
             }
-            .genre{
-                border:solid 1px black;
-                display:inline-block;
-                padding:10px;
-                border-radius: 5px;
-            }
+            
             .evaluation{
                 border:solid 1px black;
                 display:inline-block;
@@ -38,92 +33,96 @@
         </style>
         <form action="/reviews" method="POST">
             @csrf
+            
             <br>
             <br>
             <br>
             <div class="college">
-                <label for "college_name">大学名</label>
-                <input type="text" name="college_name" id="college_name" formaction="/colleges">
+                <label for "college.name">大学名</label>
+                <input type="text" name="college[name]" id="college_name">
             </div>
             <br>
             <div class="club">
-                <label for "club_name">サークル・部活名</label>
-                <input type="text" name="club_name" id ="club_name" formaction="/clubs">
+                <label for "club.name">サークル・部活名</label>
+                <input type="text" name="club[name]" id ="club_name">
             </div>
             <br>
-            <p>ジャンル<p>
-            <div class="genre">
-            　<input type="radio" name="genre" value="運動系サークル">運動系サークル
-            　<input type="radio" name="genre" value="文化系サークル">文化系サークル
-            　<input type="radio" name="genre" value="運動部">運動部
-            　<input type="radio" name="genre" value="文化部">文化部
-            　<input type="radio" name="genre" value="その他">その他
+            <div class = "genre">
+             <label for "genre.option">ジャンル</label>
+             <select name="genre[name]" id = genre.option>
+                        <option value="運動系サークル">運動系サークル</option>
+                        <option value="文化系サークル">文化系サークル</option>
+                        <option value="運動部">運動部</option>
+                        <option value="文化部">文化部</option>
+                        <option value="その他">その他</option>
+                        <option value="指定しない">指定しない</option>
+             </select>
             </div>
             <br>
             <br>
             <div class="evaluation">
-                <div class="enjoyment">
+                <div class="review.enjoyment">
                     <p>楽しさ</p>
-                    <input type="radio" name="enjoyment" value="楽しくない">楽しくない
-                    <input type="radio" name="enjoyment" value="あまり楽しくない">あまり楽しくない
-                    <input type="radio" name="enjoyment" value="どちらともいえない">どちらともいえない
-                    <input type="radio" name="enjoyment" value="楽しい">楽しい
-                    <input type="radio" name="enjoyment" value="かなり楽しい">かなり楽しい
+                    <input type="radio" name="review[enjoyment]" value="1">楽しくない
+                    <input type="radio" name="review[enjoyment]" value="2">あまり楽しくない
+                    <input type="radio" name="review[enjoyment]" value="3">どちらともいえない
+                    <input type="radio" name="review[enjoyment]" value="4">楽しい
+                    <input type="radio" name="review[enjoyment]" value="5">かなり楽しい
                 </div>
                 <br>
-                <div class="cost">
+                <div class="review.cost">
                     <p>費用の少なさ</p>
-                    <input type="radio" name="cost" value="多い">多い
-                    <input type="radio" name="cost" value="少し多い">少し多い
-                    <input type="radio" name="cost"value="普通">普通
-                    <input type="radio" name="cost" value="少ない">少ない
-                    <input type="radio" name="cost" value="ない">ない
+                    <input type="radio" name="review[cost]" value="1">多い
+                    <input type="radio" name="review[cost]" value="2">少し多い
+                    <input type="radio" name="review[cost]"value="3">普通
+                    <input type="radio" name="review[cost]" value="4">少ない
+                    <input type="radio" name="review[cost]" value="5">ない
                 </div>
                 <br>
-                <div class="connection">
+                <div class="review.connection">
                     <p>先輩とのつながり</p>
-                    <input id="connection1" type="radio" name="cost" value="ない"><label for="connection1">ない</label>
-                    <input id="connection2" type="radio" name="cost" value="少ない"><label for="connection2">少ない</label>
-                    <input id="connection3" type="radio" name="cost" value="普通"><label for="connection3">普通</label>
-                    <input id="connection4" type="radio" name="cost" value="少し多い"><label for="connection4">少し多い</label>
-                    <input id="connection5" type="radio" name="cost" value="多い"><label for="connection5">多い</label>
+                    <input type="radio" name="review[connection]" value="1">ない
+                    <input type="radio" name="review[connection]" value="2">少ない
+                    <input type="radio" name="review[connection]"value="3">普通
+                    <input type="radio" name="review[connection]" value="4">少し多い
+                    <input type="radio" name="review[connection]" value="5">多い
                 </div>
                 <br>
-                 <div class="strict">
+                <div class="review.strict">
                     <p>厳しさ</p>
-                    <input id="strict1" type="radio" name="strict" value="厳しい"><label for="strict1">厳しい</label>
-                    <input id="strict2" type="radio" name="strict" value="少し厳しい"><label for="strict2">少し厳しい</label>
-                    <input id="strict3" type="radio" name="strict" value="普通"><label for="strict3">普通</label>
-                    <input id="strict4" type="radio" name="strict" value="少し緩い"><label for="strict4">少し緩い</label></label>
-                    <input id="strict5" type="radio" name="strict" value="緩い"><label for="strict5">緩い</label>
+                    <input type="radio" name="review[strict]" value="1">厳しい
+                    <input type="radio" name="review[strict]" value="2">少し厳しい
+                    <input type="radio" name="review[strict]" value="3">普通
+                    <input type="radio" name="review[strict]" value="4">少し緩い
+                    <input type="radio" name="review[strict]" value="5">緩い
                 </div>
                 <br>
-                <div class="often">
+                <div class="review.often">
                     <p>活動頻度</p>
-                    <input id="often1" type="radio" name="often" value="週6.7"><label for="often1">週6.7</label>
-                    <input id="often2" type="radio" name="often" value="週4.5"><label for="often2">週4.5</label>
-                    <input id="often3" type="radio" name="often" value="週2.3"><label for="often3">週2.3</label>
-                    <input id="often4" type="radio" name="often" value="週1~月1"><label for="often4">週1~月1</label>
-                    <input id="often5" type="radio" name="often" value="活動していない"><label for="often5">活動していない</label>
+                    <input type="radio" name="review[often]" value="1">週6以上
+                    <input type="radio" name="review[often]" value="2">週4.5
+                    <input type="radio" name="review[often]" value="3">週2.3
+                    <input type="radio" name="review[often]" value="4">週1~月1
+                    <input type="radio" name="review[often]" value="5">活動していない                    
                 </div>
                 <br>
-                 <div class="scale">
+                 <div class="review.scale">
                     <p>規模</p>
-                    <input id="scale1" type="radio" name="scale" value="5人以下"><label for="scale1">5人以下</label>
-                    <input id="scale2" type="radio" name="scale" value="6~10人"><label for="scale2">6~10人</label>
-                    <input id="scale3" type="radio" name="scale" value="11~30人"><label for="scale3">11~30人</label>
-                    <input id="scale4" type="radio" name="scale" value="31~60人"><label for="scale4">31~60人</label>
-                    <input id="scale5" type="radio" name="scale" value="61人以上"><label for="scale5">61人以上</label>
+                    <input type="radio" name="review[scale]" value="1">5人以下
+                    <input type="radio" name="review[scale]" value="2">6~10人
+                    <input type="radio" name="review[scale]" value="3">11~30人
+                    <input type="radio" name="review[scale]" value="4">31~60人
+                    <input type="radio" name="review[scale]" value="5">61人以上
                 </div>
             </div>
             <br>
             <br>
             <div class="free_comment">
                 <p>自由コメント</p>
-                <textarea name="message"  rows="10" cols="80" id="message"></textarea>
+                <textarea name="review[body]"  rows="10" cols="80" id="review.comment"></textarea>
             </div>
             <div class="submit">
-                <input type="submit" onclick='/reviews/post_complete' value="投稿する">
+                <input type="submit" value="投稿する">
             </div>
         </form>
         <br>

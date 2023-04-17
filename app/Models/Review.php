@@ -2,46 +2,25 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Review extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
     
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+     protected $fillable=[
+       'enjoyment',
+       'cost',
+       'connection',
+       'strict',
+       'often',
+       'scale',
+       'body',
+       'user_id',
+       'club_id',
+    ];   
+    
     
     public function user()
     {
@@ -57,6 +36,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Club::class);
     }
+    
+    public function getByLimit(int $limit_count =5)
+    {
+        return $this->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
+    }
+    
+    public function getPaginateByLimit(int $limit_count = 5)
+    {
+    return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 }
-
-  

@@ -9,7 +9,7 @@
                 display: flex;
                 justify-content: space-around; 
                 border: solid 1px white;
-                padding: 200px 100px 200px 100px;
+                padding: 200px 300px 200px 300px;
                 
             }
             .box{
