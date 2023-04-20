@@ -50,12 +50,57 @@ class PostController extends Controller
       return view('reviews/post_complete');
    }
    
-   public function both(College $college, Genre $genre, Club $club, Review $review)
+   public function both(Request $request, College $college, Genre $genre, Club $club, Review $review)
    {
       //clubs = $club->with('college','genre')->get();
       $reviews = $review->with('user', 'club')->get();
-    
+      
+      //場合分け検索
+      $collegeSearch = $request->input('collegeSearch');
+      $genreSelect = $request->input('genreSelect');
+      /*$collegeName = College::value("name");
+      
+      $genreName = Genre::value("name");
+      
+      $keyword =self::escapeLike($collegeSearch);*/
+
+      if (isset($collegeSearch) && isset($genreSelect)) {
+         $collegeName=$college->where('name', '=',  $collegeSearch )->first();
+         $genreName=$genre->where('name', $genreSelect )->first();
+      
+         $clubs=$collegeName->club()->where('genre_id', $genreName->id)->get();
+         dd($clubs[0]->review()->get());
+      } elseif(isset($collegeSearch) && !isset($genreSelect)){
+         $collegeName=$college->where('name', '=',  $collegeSearch )->first();
+      } elseif(!isset($collegeSearch) && isset($genreSelect)){
+        $genreName=$genre->where('name', $genreSelect )->first();
+      } else{
+         $collegeName=$college->name;
+         $genreName=$college->name;
+      }  
+      
+      
+      
+      $college_evaluation = $Review->where()->get();
+      $college_point = array();
+     foreach($college_evaluation as $college_evaluation){
+         array_push($college_point, $college_evaluation->enjoyment);
+      $ave_college=array_sum($college_point)/count($college_point);
+     } 
+      $college_evaluation = $Review->where()->get();
+      $college_point = array();
+      foreach($college_evaluation as $college_evaluation){
+         array_push($college_point, $college_evaluation->enjoyment);
+     }
+     $ave_college=array_sum($college_point)/count($college_point);
+      
+      
       return view('reviews/both')->with(['reviews' => $review->getPaginateByLimit()]);
+   }
+   
+   public static function escapeLike($str)
+   {
+      return str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $str);
    }
    
    public function detail(Review $review, Comment $comment)

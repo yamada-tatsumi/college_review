@@ -62,26 +62,27 @@
             
         </style>
         <div class="all">
-        <form action="/both" method="GET">
+        <form action="/reviews/both" method="GET">
             @csrf
                 <div class="college">
                     <label for "college_name">大学名</label>
-                    <input type="search" name="college_seach" id="collge_name" placeholder="大学名を入力">
+                    <input type="search" name="collegeSearch" id="collge_name" placeholder="大学名を入力"> 
                 </div>
                 <div class="genre">
-                    <p>ジャンル</p>
-                    <select name="genre">
+                    <label for "genre_select">ジャンル</label>
+                    <select name="genreSelect" id ="genre_select">
+                        <option value="" selected>指定しない</option>
                         <option value="運動系サークル">運動系サークル</option>
                         <option value="文化系サークル">文化系サークル</option>
                         <option value="運動部">運動部</option>
                         <option value="文化部">文化部</option>
                         <option value="その他">その他</option>
-                        <option value="指定しない">指定しない</option>
+                        
                     </select>
                 </div>
                 <br>
-                <div class="serch">
-                    <a href='/reviews/both'>検索する</a>    
+                <div class="search">
+                <input type="submit" value="検索する">
                 </div>
         </form>
         <br>
