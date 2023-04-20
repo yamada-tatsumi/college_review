@@ -61,6 +61,8 @@
          <div class="image">
             <img src="{{ asset('img/evaluation.example.png')}}">
          </div>
+         
+         
          <div class='reviews'>
             @if($reviews->count() > 0)
             @foreach ($reviews as $review)
