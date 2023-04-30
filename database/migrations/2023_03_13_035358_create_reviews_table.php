@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('enjoyment')->default(0);
-            $table->integer('cost')->default(0);
-            $table->integer('connection')->default(0);
-            $table->integer('strict')->default(0);
-            $table->integer('often')->default(0);
-            $table->integer('scale')->default(0);
+            $table->integer('enjoyment')->default(3);
+            $table->integer('cost')->default(3);
+            $table->integer('connection')->default(3);
+            $table->integer('strict')->default(3);
+            $table->integer('often')->default(3);
+            $table->integer('scale')->default(3);
             
             $table->string('body', 1000);
             

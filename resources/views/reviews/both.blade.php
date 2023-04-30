@@ -58,17 +58,65 @@
         </style>
         <div class ="body">
          <h1 class ="title">投稿一覧</h1>
-         <div class="image">
+        <div class="image">
             <img src="{{ asset('img/evaluation.example.png')}}">
          </div>
          
          
+         
+         <div class = "point">
+            <div class = "college_table">
+            <table id="college_point" border="2" layout="fixed">
+                    <div class="th">
+                     <tr>
+                     <th>楽しさ</th>
+                     <th>費用</th>
+                     <th>先輩とのつながり</th>
+                     <th>厳しさ</th>
+                     <th>活動頻度</th>
+                     <th>規模</th>
+                     </tr>
+                    </div>
+            
+                    <div class="td">
+                     <tr>
+                    @foreach($ave_college as $ave_college)     
+                     <td>{{ $ave_college }}</td>
+                    @endforeach    
+                     </tr>
+                    </div>
+            </table>
+            </div>
+            <div class = "gemre_table">
+            <table id="genre_point" border="2" layout="fixed">
+                    <div class="th">
+                     <tr>
+                     <th>楽しさ</th>
+                     <th>費用</th>
+                     <th>先輩とのつながり</th>
+                     <th>厳しさ</th>
+                     <th>活動頻度</th>
+                     <th>規模</th>
+                     </tr>
+                    </div>
+            
+                    <div class="td">
+                     <tr>
+                     @foreach($ave_genre as $ave_genre)     
+                     <td>{{ $ave_genre }}</td>
+                     @endforeach 
+                     </tr>
+                    </div>
+            </table>
+            </div>
+         </div>
+         @if($reviews->count() > 0)
          <div class='reviews'>
-            @if($reviews->count() > 0)
             @foreach ($reviews as $review)
+          
             <div class="review">
-                <h2 class="college">大学名：{{ $review->club->college->name }}</h2>
-                <h2 class="genre">ジャンル：{{ $review->club->genre->name }}</h2>
+                <h2 class="college">大学名：{{$review->club->college->name }}</h2>
+                <h2 class="genre">ジャンル：{{$review->club->genre->name }}</h2>
                 <h2 class="club">
                     <a href="/reviews/{{ $review->id }}">サークル・部活名：{{ $review->club->name }}</a>
                 </h2>
@@ -102,9 +150,9 @@
             @endforeach
             @else
             <p>データがありません。</p>
-             @endif
+            @endif
              <div>
-                 {{ $reviews->links() }}
+               {{$reviews->links()}}
              </div>
             <div class="return">
                  <a href="/reviews/setting">戻る</a>

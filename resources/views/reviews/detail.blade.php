@@ -3,6 +3,20 @@
             <x-slot name="header">
                 大学のサークル・部活口コミサイト
         </x-slot>
+        <style>
+            table, th, td{
+                border:solid 1px black;
+                text-align:center;
+                margin:auto;
+                table-layout: fixed;
+            }
+            th{
+                background-color:#add8e6;
+            }
+            td{
+                background-color:#dcdcdc;
+            }
+        </style>
         <div class='body'>
             <div class="title">投稿詳細</div>
             <div class="review">
@@ -38,14 +52,11 @@
                 </table>
                 </div>
                
-                <div class="submit">
-                <input type="submit" value="コメントする">
-                <div class="return">
-                 <a href="/reviews/both">戻る</a>
-                </div>
+               
+                <h2>コメント一覧</h2>
                 @foreach($comments as $comment)
                 <div class="comment_view">
-                    {{$comment->content}}
+                   {{$loop->iteration}}:{{$comment->content}}
                 </div>
                 @endforeach
                 
@@ -60,7 +71,9 @@
                 <input type="submit" value="コメントする">
                 </div>
             </form>    
-            
+            <div class="return">
+                 <a href="/reviews/both">戻る</a>
+            </div>
             
            
         </div>

@@ -49,13 +49,10 @@
             <br>
             <div class = "genre">
              <label for "genre.option">ジャンル</label>
-             <select name="genre[name]" id = genre.option>
-                        <option value="運動系サークル">運動系サークル</option>
-                        <option value="文化系サークル">文化系サークル</option>
-                        <option value="運動部">運動部</option>
-                        <option value="文化部">文化部</option>
-                        <option value="その他">その他</option>
-                        <option value="指定しない">指定しない</option>
+             <select name="genre[id]" id = genre.option>
+                      @foreach($genres as $genre)
+                        <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                      @endforeach 
              </select>
             </div>
             <br>

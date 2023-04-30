@@ -27,7 +27,7 @@ class Club extends Model
     
     public function review()
     {
-        return $this->hasmany(Review::class);
+        return $this->hasMany(Review::class);
     }
 }
  
